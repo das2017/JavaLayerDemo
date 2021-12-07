@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zzj.dao.mapper.order.OrderRefundMapper">
+  <resultMap id="BaseResultMap" type="org.zzj.dao.entity.order.OrderRefund">
+    <id column="refund_id" jdbcType="VARCHAR" property="refundId" />
+    <result column="refund_status" jdbcType="TINYINT" property="refundStatus" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="consume_id" jdbcType="VARCHAR" property="consumeId" />
+    <result column="pay_id" jdbcType="VARCHAR" property="payId" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="refund_type" jdbcType="TINYINT" property="refundType" />
+    <result column="refund_time" jdbcType="TIMESTAMP" property="refundTime" />
+    <result column="refund_way" jdbcType="TINYINT" property="refundWay" />
+    <result column="serial_no" jdbcType="VARCHAR" property="serialNo" />
+    <result column="refund_reason" jdbcType="TINYINT" property="refundReason" />
+    <result column="receipt_channel" jdbcType="TINYINT" property="receiptChannel" />
+    <result column="refund_account" jdbcType="VARCHAR" property="refundAccount" />
+    <result column="callback" jdbcType="TINYINT" property="callback" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    refund_id, refund_status, order_id, consume_id, pay_id, amount, refund_type, refund_time, 
+    refund_way, serial_no, refund_reason, receipt_channel, refund_account, callback, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_refund
+    where refund_id = #{refundId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_refund
+    where refund_id = #{refundId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="refund_id" keyProperty="refundId" parameterType="org.zzj.dao.entity.order.OrderRefund" useGeneratedKeys="true">
+    insert into order_refund (refund_status, order_id, consume_id, 
+      pay_id, amount, refund_type, 
+      refund_time, refund_way, serial_no,
+      refund_reason, receipt_channel, refund_account, callback, remark
+      )
+    values (#{refundStatus,jdbcType=TINYINT}, #{orderId,jdbcType=VARCHAR}, #{consumeId,jdbcType=VARCHAR}, 
+      #{payId,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{refundType,jdbcType=TINYINT}, 
+      #{refundTime,jdbcType=TIMESTAMP}, #{refundWay,jdbcType=TINYINT}, #{serialNo,jdbcType=VARCHAR}, 
+      #{refund_reason,jdbcType=TINYINT}, #{receipt_channel,jdbcType=TINYINT}, #{refund_account,jdbcType=VARCHAR},
+      #{callback,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="refund_id" keyProperty="refundId" parameterType="org.zzj.dao.entity.order.OrderRefund" useGeneratedKeys="true">
+    insert into order_refund
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="refundStatus != null">
+        refund_status,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="consumeId != null">
+        consume_id,
+      </if>
+      <if test="payId != null">
+        pay_id,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="refundType != null">
+        refund_type,
+      </if>
+      <if test="refundTime != null">
+        refund_time,
+      </if>
+      <if test="refundWay != null">
+        refund_way,
+      </if>
+      <if test="serialNo != null">
+        serial_no,
+      </if>
+      <if test="refundReason != null">
+        refund_reason,
+      </if>
+      <if test="receiptChannel != null">
+        receipt_channel,
+      </if>
+      <if test="refundAccount != null">
+        refund_account,
+      </if>
+      <if test="callback != null">
+        callback,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="refundStatus != null">
+        #{refundStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeId != null">
+        #{consumeId,jdbcType=VARCHAR},
+      </if>
+      <if test="payId != null">
+        #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="refundType != null">
+        #{refundType,jdbcType=TINYINT},
+      </if>
+      <if test="refundTime != null">
+        #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundWay != null">
+        #{refundWay,jdbcType=TINYINT},
+      </if>
+      <if test="serialNo != null">
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundReason != null">
+        #{refund_reason,jdbcType=TINYINT},
+      </if>
+      <if test="receiptChannel != null">
+        #{receipt_channel,jdbcType=TINYINT},
+      </if>
+      <if test="refundAccount != null">
+        #{refund_account,jdbcType=VARCHAR},
+      </if>
+      <if test="callback != null">
+        #{callback,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.zzj.dao.entity.order.OrderRefund">
+    update order_refund
+    <set>
+      <if test="refundStatus != null">
+        refund_status = #{refundStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeId != null">
+        consume_id = #{consumeId,jdbcType=VARCHAR},
+      </if>
+      <if test="payId != null">
+        pay_id = #{payId,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="refundType != null">
+        refund_type = #{refundType,jdbcType=TINYINT},
+      </if>
+      <if test="refundTime != null">
+        refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="refundWay != null">
+        refund_way = #{refundWay,jdbcType=TINYINT},
+      </if>
+      <if test="serialNo != null">
+        serial_no = #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundReason != null">
+        refund_reason = #{refundReason,jdbcType=TINYINT},
+      </if>
+      <if test="receiptChannel != null">
+        receipt_channel = #{receiptChannel,jdbcType=TINYINT},
+      </if>
+      <if test="refundAccount != null">
+        refund_account = #{refundAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="callback != null">
+        callback = #{callback,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where refund_id = #{refundId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.zzj.dao.entity.order.OrderRefund">
+    update order_refund
+    set refund_status = #{refundStatus,jdbcType=TINYINT},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      consume_id = #{consumeId,jdbcType=VARCHAR},
+      pay_id = #{payId,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      refund_type = #{refundType,jdbcType=TINYINT},
+      refund_time = #{refundTime,jdbcType=TIMESTAMP},
+      refund_way = #{refundWay,jdbcType=TINYINT},
+      serial_no = #{serialNo,jdbcType=VARCHAR},
+      refund_reason = #{refundReason,jdbcType=TINYINT},
+      receipt_channel = #{receiptChannel,jdbcType=TINYINT},
+      refund_account = #{refundAccount,jdbcType=VARCHAR},
+      callback = #{callback,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where refund_id = #{refundId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="query" parameterType="org.zzj.dto.request.RefundQueryRequest" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM order_refund
+    <where>
+      <if test="orderID != null">
+        AND order_id = #{orderID,jdbcType=VARCHAR}
+      </if>
+      <if test="refundReason > 0">
+        AND refund_reason = #{refundReason,jdbcType=TINYINT}
+      </if>
+      <if test="refundType > 0">
+        AND refund_type = #{refundType,jdbcType=TINYINT}
+      </if>
+      <if test="refundWay > 0">
+        AND refund_way = #{refundWay,jdbcType=TINYINT}
+      </if>
+      <if test="refundStatus > 0">
+        AND refund_status = #{refundStatus,jdbcType=TINYINT}
+      </if>
+      <if test="beginDate != null">
+        AND (refund_time &gt;= #{beginDate,jdbcType=TIMESTAMP} AND refund_time &lt; #{endDate,jdbcType=TIMESTAMP})
+      </if>
+    </where>
+    LIMIT #{rowBegin,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+  </select>
+  <select id="queryTotal" parameterType="org.zzj.dto.request.RefundQueryRequest" resultType="integer">
+    SELECT COUNT(1) FROM order_refund
+    <where>
+      <if test="orderID != null">
+        AND order_id = #{orderID,jdbcType=VARCHAR}
+      </if>
+      <if test="refundReason > 0">
+        AND refund_reason = #{refundReason,jdbcType=TINYINT}
+      </if>
+      <if test="refundType > 0">
+        AND refund_type = #{refundType,jdbcType=TINYINT}
+      </if>
+      <if test="refundWay > 0">
+        AND refund_way = #{refundWay,jdbcType=TINYINT}
+      </if>
+      <if test="refundStatus > 0">
+        AND refund_status = #{refundStatus,jdbcType=TINYINT}
+      </if>
+      <if test="beginDate != null">
+        AND (refund_time &gt;= #{beginDate,jdbcType=TIMESTAMP} AND refund_time &lt; #{endDate,jdbcType=TIMESTAMP})
+      </if>
+    </where>
+  </select>
+  <select id="getID" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_refund
+    where refund_id = #{refundId,jdbcType=VARCHAR}
+  </select>
+  <update id="manual" parameterType="org.zzj.dto.request.RefundManualRequest">
+    update order_refund
+    set refund_status = 2,
+        amount = #{refundAmount,jdbcType=DECIMAL},
+        refund_way = #{refundWay,jdbcType=TINYINT},
+        refund_type = #{refundType,jdbcType=TINYINT},
+        receipt_channel = #{receiptChannel,jdbcType=TINYINT},
+        refund_account = #{refundAccount,jdbcType=VARCHAR},
+        remark = #{remark,jdbcType=VARCHAR}
+    where refund_id = #{refundID,jdbcType=VARCHAR}
+  </update>
+  <update id="cancel" parameterType="org.zzj.dto.request.RefundCancelRequest">
+    update order_refund
+    set refund_status = 3,
+    remark = #{remark,jdbcType=VARCHAR}
+    where refund_id = #{refundID,jdbcType=VARCHAR}
+  </update>
+</mapper>

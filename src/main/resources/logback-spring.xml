@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="log.dir" source="log.dir"/>
+    <springProperty scope="context" name="log.level" source="log.level"/>
+    <springProperty scope="context" name="log.day" source="log.day"/>
+    <springProperty scope="context" name="system.name" source="system.name"/>
+
+    <appender name="ConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger %M Line:%-3L - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="FileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${log.dir}/${system.name}_%d{yyyyMMdd}_%i.log</FileNamePattern>
+            <MaxHistory>${log.day}</MaxHistory>
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger %M Line:%-3L : %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 屏蔽框架日志 -->
+    <logger name="org.hibernate" level="WARN" additivity="false"/>
+    <logger name="org.springframework" level="WARN" additivity="false"/>
+    <logger name="org.apache" level="WARN" additivity="false"/>
+    <logger name="org.hibernate" level="WARN" additivity="false"/>
+    <logger name="org.mybatis" level="info" additivity="false"/>
+    <logger name="org.quartz.core" level="WARN" additivity="false"/>
+
+    <!-- 屏蔽部分很长的业务日志 -->
+    <logger name="org.zzj.service.impl.ChannelServiceImpl" level="ERROR" additivity="false"/>
+
+    <root level="${log.level}">
+        <!-- 开发环境打开，生产环境关闭-->
+        <appender-ref ref="ConsoleAppender" />
+        <!-- 开发环境关闭，生产环境打开-->
+        <appender-ref ref="FileAppender"/>
+    </root>
+</configuration>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zzj.dao.mapper.goods.ChannelMapper">
+    <resultMap id="BaseResultMap" type="org.zzj.dao.entity.goods.Channel">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="parent_id" jdbcType="INTEGER" property="parentId"/>
+        <result column="state" jdbcType="INTEGER" property="state"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt"/>
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy"/>
+    </resultMap>
+    <resultMap id="QueryResultMap" type="org.zzj.dto.response.ChannelQueryResponse">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="parent_id" jdbcType="INTEGER" property="parentId"/>
+        <result column="state" jdbcType="INTEGER" property="state"/>
+        <result column="creator" jdbcType="VARCHAR" property="creator"/>
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt"/>
+        <result column="updated_by" jdbcType="VARCHAR" property="updatedBy"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, code, type, name, remark, parent_id, state, creator, created_at, updated_at, updated_by
+    </sql>
+
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.zzj.dao.entity.goods.Channel"
+            useGeneratedKeys="true">
+        INSERT INTO channel
+        (code, type, name, remark, parent_id, state, creator, created_at, updated_at, updated_by)
+        VALUES (#{code,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+                #{remark,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER},
+                #{creator,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP},
+                #{updatedAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.zzj.dao.entity.goods.Channel"
+            useGeneratedKeys="true">
+        INSERT INTO channel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                code,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+            <if test="creator != null">
+                creator,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="updatedBy != null">
+                updated_by,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="code != null">
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=INTEGER},
+            </if>
+            <if test="creator != null">
+                #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                #{updatedBy,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="org.zzj.dao.entity.goods.Channel">
+        UPDATE channel
+        SET code       = #{code,jdbcType=VARCHAR},
+            type       = #{type,jdbcType=INTEGER},
+            name       = #{name,jdbcType=VARCHAR},
+            remark     = #{remark,jdbcType=VARCHAR},
+            parent_id  = #{parentId,jdbcType=INTEGER},
+            state      = #{state,jdbcType=INTEGER},
+            creator    = #{creator,jdbcType=VARCHAR},
+            created_at = #{createdAt,jdbcType=TIMESTAMP},
+            updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            updated_by = #{updatedBy,jdbcType=VARCHAR}
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="org.zzj.dao.entity.goods.Channel">
+        UPDATE channel
+        <set>
+            <if test="code != null">
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                parent_id= #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=INTEGER},
+            </if>
+            <if test="creator != null">
+                creator = #{creator,jdbcType=VARCHAR},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedBy != null">
+                updated_by = #{updatedBy,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        DELETE
+        FROM channel
+        WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM channel
+        WHERE id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM channel
+    </select>
+
+
+    <select id="query" parameterType="org.zzj.dto.request.ChannelQueryRequest"
+            resultType="org.zzj.dao.entity.goods.Channel">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM channel
+        <where>
+            <if test="code != null">
+                AND code = #{code,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null">
+                AND name LIKE "%"#{name,jdbcType=VARCHAR}"%"
+            </if>
+            <if test="state != null">
+                AND state = #{state,jdbcType=INTEGER}
+            </if>
+            <if test="creator != null">
+                AND creator = #{creator,jdbcType=VARCHAR}
+            </if>
+        </where>
+        LIMIT #{rowBegin,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+    </select>
+    <select id="queryTotal" parameterType="org.zzj.dto.request.ChannelQueryRequest" resultType="integer">
+        SELECT COUNT(1) FROM channel
+        <where>
+            <if test="code != null">
+                AND code = #{code,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null">
+                AND name LIKE "%"#{name,jdbcType=VARCHAR}"%"
+            </if>
+            <if test="state != null">
+                AND state = #{state,jdbcType=INTEGER}
+            </if>
+            <if test="creator != null">
+                AND creator = #{creator,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

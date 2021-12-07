@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 数据库驱动:换成你本地的驱动包位置-->
+    <classPathEntry location="lib\mysql-connector-java-5.1.47.jar"/>
+    <context id="goods-pms" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="false"/>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接URL，用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://zzj.mysql.rds.aliyuncs.com:3306/order?characterEncoding=utf8"
+                        userId="zzj" password="zzj123">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 生成实体类的包名和位置-->
+        <javaModelGenerator targetPackage="org.zzj.dao.entity.order" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- 生成的SQL映射mapping文件包名和位置-->
+        <sqlMapGenerator targetPackage="resources.mapper.order" targetProject="src/main">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator targetPackage="org.zzj.dao.mapper.order" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- tableName数据库中的表名或视图名 -->
+        <!--
+        <table tableName="ZhqTest" domainObjectName="ZhqTest"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table tableName="brand">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        -->
+        <table tableName="order_pay">
+            <generatedKey column="pay_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table tableName="order_refund">
+            <generatedKey column="refund_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,100 @@
+server:
+  port: 8808
+  contextPath: /api
+
+system:
+  name: JavaLayerDemo
+  charset: UTF-8
+
+spring:
+  datasource:
+    order:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://zzj.mysql.rds.aliyuncs.com:3306/order?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      username: zzj
+      password: zzj123
+    goods:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://zzj.mysql.rds.aliyuncs.com:3306/goods?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      username: zzj
+      password: zzj123
+  redis:
+    host: ${redis.host}
+    password: ${redis.password}
+    port: ${redis.port}
+    timeout: 10000ms
+    database: ${redis.database.JavaLayerDemo}
+
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+  activemq:
+    #开发环境
+    broker-url: tcp://192.168.1.10:61616
+    #user:
+    #password:
+    in-memory: true
+    pool:
+      enabled: false
+      max-connections: 10
+      idle-timeout: 30000   #空闲的连接过期时间，默认为30秒
+  elasticsearch:
+    rest:
+      uris: http://192.168.1.10:9200
+
+mybatis:
+  mapper-locations: classpath*:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+    multiple-result-sets-enabled: true
+
+#健康检查
+endpoints:
+  health:
+    enabled: true
+    time-to-live: 8000 #8秒
+management:
+  health:
+    mongo:
+      enabled: false
+    solr:
+      enabled: false
+    rabbit:
+      enabled: false
+multipart:
+  maxRequestSize: 30Mb
+  maxFileSize: 30Mb
+
+#日志配置
+log:
+  dir: logs
+  level: debug
+  day: 5
+
+# zookeeper地址
+zookeeper.host: 192.168.1.10:2181,192.168.1.10:2182,192.168.1.10:2183
+# elastic-job 注册中心地址
+elastic-job.server-lists: 192.168.1.10:2181,192.168.1.10:2182,192.168.1.10:2183
+
+#redis配置--dev
+redis:
+  host: 192.168.1.10
+  password: zzj123
+  port: 6379
+  database:
+    order: 1
+    goods: 2
+    JavaLayerDemo: 15
+
+#api
+apiHost:
+  userApi: http://192.168.1.10:6868
+  goodsApi: http://192.168.1.10:6868
+  orderApi: http://192.168.1.10:6868
+  marketApi: http://192.168.1.10:6868
+  accountApi: http://192.168.1.10:6868

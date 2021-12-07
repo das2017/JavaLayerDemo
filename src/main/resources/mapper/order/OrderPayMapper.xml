@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zzj.dao.mapper.order.OrderPayMapper">
+  <resultMap id="BaseResultMap" type="org.zzj.dao.entity.order.OrderPay">
+    <id column="pay_id" jdbcType="VARCHAR" property="payId" />
+    <result column="pay_status" jdbcType="TINYINT" property="payStatus" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="consume_id" jdbcType="VARCHAR" property="consumeId" />
+    <result column="consume_type" jdbcType="TINYINT" property="consumeType" />
+    <result column="pay_type" jdbcType="TINYINT" property="payType" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="pay_way" jdbcType="TINYINT" property="payWay" />
+    <result column="serial_no" jdbcType="VARCHAR" property="serialNo" />
+    <result column="callback" jdbcType="TINYINT" property="callback" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pay_id, pay_status, order_id, consume_id, consume_type, pay_type, amount, pay_time, 
+    pay_way, serial_no, callback, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_pay
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_pay
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="pay_id" keyProperty="payId" parameterType="org.zzj.dao.entity.order.OrderPay" useGeneratedKeys="true">
+    insert into order_pay (pay_status, order_id, consume_id, 
+      consume_type, pay_type, amount, 
+      pay_time, pay_way, serial_no, 
+      callback, remark)
+    values (#{payStatus,jdbcType=TINYINT}, #{orderId,jdbcType=VARCHAR}, #{consumeId,jdbcType=VARCHAR}, 
+      #{consumeType,jdbcType=TINYINT}, #{payType,jdbcType=TINYINT}, #{amount,jdbcType=DECIMAL}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{payWay,jdbcType=TINYINT}, #{serialNo,jdbcType=VARCHAR}, 
+      #{callback,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="pay_id" keyProperty="payId" parameterType="org.zzj.dao.entity.order.OrderPay" useGeneratedKeys="true">
+    insert into order_pay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payStatus != null">
+        pay_status,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="consumeId != null">
+        consume_id,
+      </if>
+      <if test="consumeType != null">
+        consume_type,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="payWay != null">
+        pay_way,
+      </if>
+      <if test="serialNo != null">
+        serial_no,
+      </if>
+      <if test="callback != null">
+        callback,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeId != null">
+        #{consumeId,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeType != null">
+        #{consumeType,jdbcType=TINYINT},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payWay != null">
+        #{payWay,jdbcType=TINYINT},
+      </if>
+      <if test="serialNo != null">
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="callback != null">
+        #{callback,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="org.zzj.dao.entity.order.OrderPay">
+    update order_pay
+    <set>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeId != null">
+        consume_id = #{consumeId,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeType != null">
+        consume_type = #{consumeType,jdbcType=TINYINT},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payWay != null">
+        pay_way = #{payWay,jdbcType=TINYINT},
+      </if>
+      <if test="serialNo != null">
+        serial_no = #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="callback != null">
+        callback = #{callback,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.zzj.dao.entity.order.OrderPay">
+    update order_pay
+    set pay_status = #{payStatus,jdbcType=TINYINT},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      consume_id = #{consumeId,jdbcType=VARCHAR},
+      consume_type = #{consumeType,jdbcType=TINYINT},
+      pay_type = #{payType,jdbcType=TINYINT},
+      amount = #{amount,jdbcType=DECIMAL},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      pay_way = #{payWay,jdbcType=TINYINT},
+      serial_no = #{serialNo,jdbcType=VARCHAR},
+      callback = #{callback,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="query" parameterType="org.zzj.dto.request.PayQueryRequest" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM order_pay
+    <where>
+      <if test="payID != null">
+        AND pay_id = #{payID,jdbcType=VARCHAR}
+      </if>
+      <if test="orderID != null">
+        AND order_id = #{orderID,jdbcType=VARCHAR}
+      </if>
+      <if test="beginDate != null">
+        AND (pay_time &gt;= #{beginDate,jdbcType=TIMESTAMP} AND pay_time &lt; #{endDate,jdbcType=TIMESTAMP})
+      </if>
+    </where>
+    LIMIT #{rowBegin,jdbcType=INTEGER}, #{pageSize,jdbcType=INTEGER}
+  </select>
+  <select id="queryTotal" parameterType="org.zzj.dto.request.PayQueryRequest" resultType="integer">
+    SELECT COUNT(1) FROM order_pay
+    <where>
+      <if test="payID != null">
+        AND pay_id = #{payID,jdbcType=VARCHAR}
+      </if>
+      <if test="orderID != null">
+        AND order_id = #{orderID,jdbcType=VARCHAR}
+      </if>
+      <if test="beginDate != null">
+        AND (pay_time &gt;= #{beginDate,jdbcType=TIMESTAMP} AND pay_time &gt; #{endDate,jdbcType=TIMESTAMP})
+      </if>
+    </where>
+  </select>
+  <select id="getID" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_pay
+    where pay_id = #{payId,jdbcType=VARCHAR}
+  </select>
+</mapper>
