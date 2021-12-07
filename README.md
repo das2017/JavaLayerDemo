@@ -13,7 +13,7 @@
 2. 设置环境变量：CONFIG_PATH=F:\workspace\config
 3. 设置spring.profiles.active=test
 
-注：不修改此路径：@PropertySource(value = {"file:${CONFIG_PATH}/db.properties", "file:${CONFIG_PATH}/config.properties"})
+注：不修改此路径：@PropertySource(value = {"file:${CONFIG_PATH}/db.properties", "file:${CONFIG_PATH}/app.properties"})
 
 
 ### 模块划分
