@@ -38,4 +38,4 @@
 2. 轻量级Spring Boot + Kubernetes + 少量中间件
 3. 充分使用Kubernetes，以Kubernetes为母环境，如同基于Linux一样
 4. 云原生，充分利用云资源的优点，在云中土生土长，可以没有本地环境，包括开发测试环境
-5. 优先使用开源，知名云提供商的中间件，甚至云独立的组件，如Alibaba API网关，PolarDB（已开源）
+5. 优先使用开源，知名云提供商的中间件，甚至大胆使用云提供的独特组件，如Alibaba API网关，PolarDB（已开源）
