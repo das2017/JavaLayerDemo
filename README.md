@@ -1,5 +1,5 @@
 # JavaLayerDemo
-订单服务
+Java分层演示代码WebApi
 
 ### 系统环境:
 * dev：开发环境，使用环境变量CONFIG_PATH
@@ -33,9 +33,9 @@
 * common/constants 			        系统自定义的一些注解，异常等
 * common/utils   				    常用的工具类
 
-### 架构策略：
+### 架构思想：
 1. 不使用Spring Cloud或Spring Cloud Alibaba，侵入性太强。
 2. 轻量级Spring Boot + Kubernetes微服务 + 少量中间件。让业务的归业务，基础的归基础。
 3. 充分使用Kubernetes，以Kubernetes为母环境，如同基于Linux一样。
 4. 云原生，充分利用云资源的优点，在云中土生土长，可以没有本地开发环境和测试环境，
-5. 使用云中组件，开源优先，甚至大胆使用知名云/公有云的专有组件，如Alibaba API网关，PolarDB（已开源）
+5. 大胆使用云组件，开源优先，知名云/公有云的专有组件亦可，如Alibaba API网关，PolarDB（已开源）
