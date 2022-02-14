@@ -33,7 +33,7 @@
 * common/constants 			        系统自定义的一些注解，异常等
 * common/utils   				    常用的工具类
 
-### 架构策略：
+### 架构思想：
 1. 不使用Spring Cloud或Spring Cloud Alibaba，侵入性太强。
 2. 轻量级Spring Boot + Kubernetes微服务 + 少量中间件。让业务的归业务，基础的归基础。
 3. 充分使用Kubernetes，以Kubernetes为母环境，如同基于Linux一样。
