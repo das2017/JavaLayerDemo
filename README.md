@@ -37,5 +37,5 @@
 1. 不使用Spring Cloud或Spring Cloud Alibaba，侵入性太强。
 2. 轻量级Spring Boot + Kubernetes微服务 + 少量中间件。让业务的归业务，基础的归基础。
 3. 充分使用Kubernetes，以Kubernetes为母环境，如同基于Linux一样。
-4. 云原生，充分利用云资源的优点，在云中土生土长，可以没有本地环境开发和测试环境，
-5. 优先使用开源，知名云提供商的中间件，甚至大胆使用公有云专有的组件，如Alibaba API网关，PolarDB（已开源）
+4. 云原生，充分利用云资源的优点，在云中土生土长，可以没有本地开发环境和测试环境，
+5. 使用云中组件，开源优先，甚至大胆使用知名云/公有云的专有组件，如Alibaba API网关，PolarDB（已开源）
